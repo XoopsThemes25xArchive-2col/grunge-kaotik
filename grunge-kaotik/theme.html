@@ -1,0 +1,202 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="<{$xoops_langcode}>" lang="<{$xoops_langcode}>">
+<head>
+    <!-- Assign Theme name -->
+    <{assign var=theme_name value=$xoTheme->folderName}>
+
+    <!-- Title and meta -->
+    <meta http-equiv="X-UA-Compatible" content="IE=EmulateIE7" />
+    <meta http-equiv="content-language" content="<{$xoops_langcode}>" />
+    <meta http-equiv="content-type" content="text/html; charset=<{$xoops_charset}>" />
+    <title><{if $xoops_pagetitle !=''}><{$xoops_pagetitle}> - <{/if}><{$xoops_sitename}></title>
+    <meta name="robots" content="<{$xoops_meta_robots}>" />
+    <meta name="keywords" content="<{$xoops_meta_keywords}>" />
+    <meta name="description" content="<{$xoops_meta_description}>" />
+    <meta name="rating" content="<{$xoops_meta_rating}>" />
+    <meta name="author" content="<{$xoops_meta_author}>" />
+    <meta name="copyright" content="<{$xoops_meta_copyright}>" />
+    <meta name="generator" content="XOOPS" />
+
+    <!-- Rss -->
+    <link rel="alternate" type="application/rss+xml" title="" href="<{xoAppUrl backend.php}>" />
+
+    <!-- Favicon -->
+    <link rel="shortcut icon" type="image/ico" href="<{xoImgUrl icons/favicon.ico}>" />
+    <link rel="icon" type="image/png" href="<{xoImgUrl icons/favicon.png}>" />
+    <!-- Sheet Css -->
+    <link rel="stylesheet" type="text/css" media="all" title="Style sheet" href="<{xoAppUrl xoops.css}>" />
+    <link rel="stylesheet" type="text/css" media="all" title="Style sheet" href="<{xoImgUrl style.css}>" />
+		<script type="text/javascript" src="<{xoImgUrl jquery-1.3.2.min.js}>"></script>
+		<script type="text/javascript" src="<{xoImgUrl sylvester.js}>"></script>
+		<script type="text/javascript" src="<{xoImgUrl pb.transformie.min.js}>"></script>
+
+<style type="text/css">
+.container{width:950px; background-color:#FFFFFF;margin-left: auto;margin-right: auto;}
+#mainHead {}
+#head1 {float:left;width:290px; height:150px; background-image:url(<{xoImgUrl grunge2_r1_c1.gif}>);}
+#head2 {float:left;width:351px; height:150px; background-image:url(<{xoImgUrl grunge2_r1_c2.gif}>);}
+#head3 {float:left;width:309px; height:150px; background-image:url(<{xoImgUrl grunge2_r1_c3.gif}>);}
+
+#mainbody {width:950px; background-image:url(<{xoImgUrl grunge2_r2_c1.gif}>);}
+#main2 {width:900px;}
+
+
+.test {
+position: relative; left:25px; width: 95px;
+height:119px;
+font-size:16px;
+font-family:Arial, Helvetica, sans-serif;
+font-weight:bold;
+-webkit-transform: rotate(-51deg);
+-moz-transform: rotate(-51deg);	
+-opera-transform: rotate(-51deg);	
+}
+.test a {color: #261609; text-decoration: none; font-weight: bold;}
+.test a:hover { background-color:#999966;}
+.test div{
+position:absolute;
+bottom:0;
+left:0;
+}
+</style>
+
+<!--[if IE 6]>
+<style type="text/css">
+.test {
+position: relative; width: 95px;
+top:-10px;
+height:100px;
+font-size:16px;
+font-family:Verdana, Arial, Helvetica, sans-serif;
+font-weight:bold;
+-webkit-transform: rotate(-51deg);
+-moz-transform: rotate(-51deg);	
+-opera-transform: rotate(-51deg);	
+}
+</style>
+<![endif]-->
+      
+        
+    <!-- customized header contents -->
+    <{$xoops_module_header}>
+</head>
+<body id="<{$xoops_dirname}>" class="<{$xoops_langcode}>">
+
+<div id="mainHead" class="container">
+<div id="head1">
+</div>
+
+<div id="head2">
+<img src="<{xoImgUrl header.gif}>" width="351" height="150" />
+</div>
+
+<{**************  SLANTED BLOCK AT TOP  ************************************}>
+<div id="head3">
+		<div class="test">
+        <div>
+<{php}>include XOOPS_ROOT_PATH.'/themes/grunge/mainmenu.php'; <{/php}>
+<{foreach item=module from=$blockM.modules}>
+<a href="<{$xoops_url}>/modules/<{$module.directory}>/"><{$module.name}></a><br />
+<{/foreach}>
+        </div>
+		</div>
+</div>
+<{**************  /SLANTED BLOCK AT TOP  ************************************}>
+
+</div>
+
+<div id="mainbody" class="container">
+<div id="main2">
+&nbsp;
+<table cellspacing="0">
+    <tr>
+        <!-- Start left blocks loop -->
+        <{if $xoops_showlblock}>
+            <td id="leftcolumn">
+            <{foreach item=block from=$xoBlocks.canvas_left}>
+                <{includeq file="$theme_name/theme_blockleft.html"}>
+            <{/foreach}>
+            </td>
+        <{/if}>
+        <!-- End left blocks loop -->
+
+        <td id="centercolumn">
+            <!-- Display center blocks if any -->
+            <{if $xoBlocks.page_topleft or $xoBlocks.page_topcenter or $xoBlocks.page_topright}>
+                <table cellspacing="0">
+                    <tr>
+                        <td id="centerCcolumn" colspan="2">
+                        <!-- Start center-center blocks loop -->
+                        <{foreach item=block from=$xoBlocks.page_topcenter}>
+                            <{includeq file="$theme_name/theme_blockcenter_c.html"}>
+                        <{/foreach}>
+                        <!-- End center-center blocks loop -->
+                        </td>
+                    </tr>
+                    <tr>
+                        <td id="centerLcolumn">
+                        <!-- Start center-left blocks loop -->
+                        <{foreach item=block from=$xoBlocks.page_topleft}>
+                            <{includeq file="$theme_name/theme_blockcenter_l.html"}>
+                        <{/foreach}>
+                        <!-- End center-left blocks loop -->
+                        </td>
+                        <td id="centerRcolumn">
+                        <!-- Start center-right blocks loop -->
+                        <{foreach item=block from=$xoBlocks.page_topright}>
+                            <{includeq file="$theme_name/theme_blockcenter_r.html"}>
+                        <{/foreach}>
+                        <!-- End center-right blocks loop -->
+                        </td>
+                    </tr>
+                </table>
+            <{/if}>
+            <!-- End center top blocks loop -->
+
+            <!-- Start content module page -->
+            <{if $xoops_contents && ($xoops_contents != ' ') }><div id="content"><{$xoops_contents}></div><{/if}>
+            <!-- End content module -->
+
+            <!-- Start center bottom blocks loop -->
+            <{if $xoBlocks.page_bottomleft or $xoBlocks.page_bottomright or $xoBlocks.page_bottomcenter}>
+                <table cellspacing="0">
+                    <{if $xoBlocks.page_bottomcenter}>
+                        <tr>
+                            <td id="bottomCcolumn" colspan="2">
+                            <{foreach from=$xoBlocks.page_bottomcenter item=block}>
+                                <{include file="$theme_name/theme_blockcenter_c.html"}>
+                            <{/foreach}>
+                            </td>
+                        </tr>
+                    <{/if}>
+
+                    <{if $xoBlocks.page_bottomleft or $xoBlocks.page_bottomright}>
+                        <tr>
+                            <td id="bottomLcolumn">
+                            <{foreach from=$xoBlocks.page_bottomleft item=block}>
+                                <{include file="$theme_name/theme_blockcenter_l.html"}>
+                            <{/foreach}>
+                            </td>
+
+                            <td id="bottomRcolumn">
+                                <{foreach from=$xoBlocks.page_bottomright item=block}>
+                                    <{include file="$theme_name/theme_blockcenter_r.html"}>
+                                <{/foreach}>
+                            </td>
+                        </tr>
+                    <{/if}>
+                </table>
+            <{/if}>
+            <!-- End center bottom blocks loop -->
+        </td>
+
+    </tr>
+</table>
+
+</div>
+<!--{xo-logger-output}-->
+</div>
+
+
+</body>
+</html>
